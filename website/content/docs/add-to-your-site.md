@@ -3,7 +3,6 @@ group: Intro
 weight: 3
 title: Add to Your Site
 ---
-
 You can adapt Netlify CMS to a wide variety of projects. It works with any content written in markdown, JSON, YAML, or TOML files, stored in a repo on [GitHub](https://github.com/), [GitLab](https://about.gitlab.com/), or [Bitbucket](https://bitbucket.org). You can also create your own custom backend.
 
 This tutorial guides you through the steps for adding Netlify CMS to a site that's built with a common [static site generator](https://www.staticgen.com/), like Jekyll, Hugo, Hexo, or Gatsby. Alternatively, you can [start from a template](../start-with-a-template) or dive right into [configuration options](../configuration-options).
@@ -13,7 +12,7 @@ This tutorial guides you through the steps for adding Netlify CMS to a site that
 A static `admin` folder contains all Netlify CMS files, stored at the root of your published site. Where you store this folder in the source files depends on your static site generator. Here's the static file location for a few of the most popular static site generators:
 
 | These generators ...                       | store static files in |
-| -------------------------------------------| --------------------- |
+| ------------------------------------------ | --------------------- |
 | Jekyll, GitBook                            | `/` (project root)    |
 | Hugo, Gatsby, Nuxt, Gridsome, Zola, Sapper | `/static`             |
 | Next                                       | `/public`             |
@@ -52,6 +51,7 @@ The first file, `admin/index.html`, is the entry point for the Netlify CMS admin
 </body>
 </html>
 ```
+
 In the code above the `script` is loaded from the `unpkg` CDN. Should there be any issue, `jsDelivr` can be used as an alternative source. Simply set the `src` to `https://cdn.jsdelivr.net/npm/netlify-cms@^2.0.0/dist/netlify-cms.js`
 
 The second file, `admin/config.yml`, is the heart of your Netlify CMS installation, and a bit more complex. The [Configuration](#configuration) section covers the details.
@@ -61,13 +61,13 @@ The second file, `admin/config.yml`, is the heart of your Netlify CMS installati
 You can also use Netlify CMS as an npm module. Wherever you import Netlify CMS, it automatically runs, taking over the current page. Make sure the script that imports it only runs on your CMS page. First install the package and save it to your project:
 
 ```bash
-npm install netlify-cms --save
+npm install netlify-cms-app --save
 ```
 
 Then import it (assuming your project has tooling for imports):
 
 ```js
-import CMS from 'netlify-cms'
+import CMS from 'netlify-cms-app'
 // Now the registry is available via the CMS object.
 CMS.registerPreviewTemplate('my-template', MyTemplate)
 ```
@@ -88,7 +88,7 @@ backend:
   branch: master # Branch to update (optional; defaults to master)
 ```
 
-_(For Bitbucket repositories, use the [Bitbucket backend](/docs/bitbucket-backend) instructions instead.)_
+*(For Bitbucket repositories, use the [Bitbucket backend](/docs/bitbucket-backend) instructions instead.)*
 
 The configuration above specifies your backend protocol and your publication branch. Git Gateway is an open source API that acts as a proxy between authenticated users of your site and your site repo. (We'll get to the details of that in the [Authentication section](#authentication) below.) If you leave out the `branch` declaration, it defaults to `master`.
 
